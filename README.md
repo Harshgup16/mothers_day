@@ -137,9 +137,3 @@ The website content is organized into:
 - **About Page**: Information about the project's purpose
 - **3D Experience**: Interactive visualization of motherhood memories
 - **Category Pages**: Filtered views of articles by topic
-
-## Acknowledgments
-
-- All articles are fictional and created for demonstration purposes
-- Images sourced ethically for the theme of motherhood and family
-- Special thanks to all mothers who inspire us every day 
