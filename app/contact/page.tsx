@@ -38,16 +38,6 @@ export default function ContactPage() {
               
               
             </div>
-            
-            <div className="relative h-48 w-full overflow-hidden rounded-md mt-4">
-              <Image 
-                src="/images/contact-illustration.jpg" 
-                alt="Mother and child illustration" 
-                fill 
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
           </div>
         </div>
       </div>
