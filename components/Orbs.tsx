@@ -66,13 +66,11 @@ const Orbs = ({
         // Detect performance capabilities and adjust settings
         let adjustedTotalItems = totalItems;
         let adjustedSphereRadius = sphereRadius;
-        let lowPerformanceMode = false;
-
-        // Simple performance detection - reduce complexity for mobile devices or smaller screens
+        
+        // For mobile, reduce the number of items but still show images
         if (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            adjustedTotalItems = Math.min(12, Math.floor(totalItems / 2));
+            adjustedTotalItems = Math.min(15, Math.floor(totalItems / 2));
             adjustedSphereRadius = Math.max(3, sphereRadius - 1);
-            lowPerformanceMode = true;
         }
 
         // Import THREE.js dynamically to avoid server-side rendering issues
@@ -246,8 +244,8 @@ const Orbs = ({
                             }
                         };
                         
-                        // If we're in fallback mode, don't even try to load images
-                        if (lowPerformanceMode || imageFallbackMode.current) {
+                        // If we're in fallback mode, don't try to load more images
+                        if (imageFallbackMode.current) {
                             createColoredPlane(phi, theta, 0xff69b4);
                             return;
                         }
