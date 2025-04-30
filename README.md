@@ -94,7 +94,7 @@ Follow these steps to set up the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mothers-day-tribute.git
+   git clone https://github.com/Harshgup16/mothers_day.git
    cd mothers-day-tribute
    ```
 
