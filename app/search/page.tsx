@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { getSearchResultsWithHighlights } from "@/lib/data"
 import Link from "next/link"
@@ -8,7 +8,8 @@ import { ChevronLeft } from "lucide-react"
 import type { SearchResult } from "@/lib/types"
 import { useSearch } from "@/hooks/use-search"
 
-export default function SearchPage() {
+// Separate component that uses useSearchParams (wrapped in Suspense in the parent)
+function SearchResults() {
   const searchParams = useSearchParams()
   const queryParam = searchParams.get("q") || ""
   const { setSearchQuery } = useSearch()
@@ -30,6 +31,9 @@ export default function SearchPage() {
       const results = getSearchResultsWithHighlights(queryParam)
       setSearchResults(results)
       setIsLoading(false)
+    } else {
+      setSearchResults([])
+      setIsLoading(false)
     }
   }, [queryParam, setSearchQuery])
 
@@ -50,7 +54,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
       <div className="mb-8">
         <Link 
           href="/" 
@@ -152,6 +156,42 @@ export default function SearchPage() {
           </div>
         </div>
       )}
+    </>
+  )
+}
+
+// Loading fallback for Suspense
+function SearchLoading() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <Link 
+          href="/" 
+          className="inline-flex items-center text-muted-foreground hover:text-foreground mb-4"
+        >
+          <ChevronLeft size={16} className="mr-1" />
+          Back to Home
+        </Link>
+        <h1 className="text-3xl font-bold mb-2">Search Results</h1>
+        <p className="text-muted-foreground">Loading search results...</p>
+      </div>
+      
+      <div className="grid grid-cols-1 gap-6 animate-pulse">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="bg-muted rounded-lg h-40"></div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Main page component with Suspense boundary
+export default function SearchPage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Suspense fallback={<SearchLoading />}>
+        <SearchResults />
+      </Suspense>
     </div>
   )
 } 
