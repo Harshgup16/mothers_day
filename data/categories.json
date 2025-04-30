@@ -1,0 +1,30 @@
+[
+  {
+    "id": "stories",
+    "title": "Stories",
+    "description": "Personal narratives and experiences of motherhood",
+    "imageUrl": "assets/2.1.jpg",
+    "count": 3
+  },
+  {
+    "id": "health",
+    "title": "Health",
+    "description": "Wellness tips and self-care for mothers",
+    "imageUrl": "assets/2.2.jpg",
+    "count": 2
+  },
+  {
+    "id": "inspiration",
+    "title": "Inspiration",
+    "description": "Uplifting content to inspire and motivate",
+    "imageUrl": "assets/2.3.jpg",
+    "count": 2
+  },
+  {
+    "id": "culture",
+    "title": "Culture",
+    "description": "Motherhood traditions around the world",
+    "imageUrl": "assets/2.4.jpg",
+    "count": 1
+  }
+]
